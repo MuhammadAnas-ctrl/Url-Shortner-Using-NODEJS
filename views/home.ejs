@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.4.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <title>HomePage</title>
+    <style>
+      * {
+    font-family: sans-serif;
+    background-color: #1f1f1f;
+    color: #fff;
+}
+  input {
+    border: none;
+    outline: none;
+    border: 1.5px solid #4b4b4b;
+    width: 80vw;
+    height: 42px;
+    border-radius: 15px;
+    padding: 0 20px;
+    font-size: 15px;
+    background-color: rgb(34, 34, 34);
+  }
+  button {
+    width: 92vw;
+    height: 40px;
+    margin-top: 22px;
+    border: none;
+    outline: none;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #0745ca;
+  }
+  a {
+    text-decoration: none;
+    color: #4b81f5;
+  }
+  i{
+    color: rgb(231, 102, 102);
+    font-size: 20px;
+  }
+  .aa{
+            margin-right: 5px;
+            float: right;
+            background-color: rgb(243, 49, 49);
+            padding: 11px;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+        .aaa{
+          background-color: #4b87f5;
+          float: left;
+          
+        }
+      h1{
+        text-align: center;
+      }
+
+
+
+      table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .15em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 2px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* general styling */
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.25;
+}
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <a class="aa" href="/login">Login</a>
+    <a class="aa aaa" href="/signup">Signup</a><br><br>
+    <h1>URL Shortner</h1>
+
+    <div>
+      <form action="/url" method="post">
+        <label for="Enter Your Original URL"></label>
+        <input type="text" name="url" placeholder="https://example.com" /><br />
+        <button type="submit">Generate</button>
+      </form>
+    </div>
+    <br /><br />
+
+
+    <div>
+      <% if(locals.urls){ %>
+<table>
+      <thead>
+        <tr>
+          <th scope="col" >S.No</th>
+          <th scope="col">ShortID</th>
+          <th scope="col">Redirect</th>
+          <th scope="col">Clicks</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% urls.forEach((url,index)=>{ %>
+          <tr>
+            <td data-label="Id"><%= index+1 %></td>
+            <td data-label="ShortURL"><%= url.shortId %></td>
+            <td data-label="Redirect"><a href="url/<%= url.shortId %>"><%=url.redirectURL%></a></td>
+            <td data-label="Clicks"><%= url.visitHistory.length %></td>
+            <td data-label="Delete"><a href="/delete/<%=url._id%>"><i class="ri-delete-bin-line"></i></a></td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+    <% } %>
+    </div>
+  </body>
+</html>
+
