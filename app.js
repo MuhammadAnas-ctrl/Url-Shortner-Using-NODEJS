@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const { connectToMongoDB } = require("./connect.js");
 const urlRoute = require("./routes/url.js");
@@ -22,7 +23,6 @@ app.use(cookieParser())
 app.use("/url",restrictToLoggedinUserOnly, urlRoute);
 app.use('/',checkAuth,staticRoute)
 app.use('/user',userRoute)
-const dotEnv =require('dotenv').config();
 
 
 
@@ -34,6 +34,6 @@ app.get('/delete/:id',async(req,res)=>{
 })
 
 
-app.listen(process.env.PORT || 8000, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log(`Server Started : ${process.env.PORT}`);
 });

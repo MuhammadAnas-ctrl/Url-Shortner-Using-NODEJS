@@ -1,9 +1,10 @@
 {
   "name": "create-a-custom-url-shortener-using-node.js-and-mongodb",
   "version": "1.0.0",
-  "main": "script.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node script.js"
+    "start": "node app.js",
+    "dev":"npx nodemon app.js"
   },
   "keywords": [],
   "author": "",
